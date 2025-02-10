@@ -1,6 +1,5 @@
 package app.config;
 import app.entities.Fee;
-import app.entities.Note;
 import app.entities.Person;
 import app.entities.PersonDetail;
 import app.utils.Utils;
@@ -45,7 +44,6 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Person.class);
         configuration.addAnnotatedClass(PersonDetail.class);
         configuration.addAnnotatedClass(Fee.class);
-        configuration.addAnnotatedClass(Note.class);
 
     }
 
