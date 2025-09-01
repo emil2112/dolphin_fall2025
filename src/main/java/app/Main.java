@@ -16,11 +16,13 @@ public class Main {
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
         try(EntityManager em = emf.createEntityManager())
         {
-            Person p1 = new Person("Hanzi");
+            Person p1 = Person.builder()
+                    .name("Hanzi")
+                    .build();
             PersonDetail pd1 = new PersonDetail("Algade 3", 4300, "Holbæk", 45);
             p1.addPersonDetail(pd1);
-            Fee f1 = new Fee(125, LocalDate.of(2023, 8, 25));
-            Fee f2 = new Fee(150, LocalDate.of(2023, 7, 19));
+            Fee f1 = Fee.builder().amount(125).payDate(LocalDate.of(2023, 8, 25)).build();
+            Fee f2 = Fee.builder().amount(150).payDate(LocalDate.of(2023, 7, 19)).build();
             p1.addFee(f1);
             p1.addFee(f2);
 
@@ -28,8 +30,7 @@ public class Main {
             em.persist(p1);
             em.getTransaction().commit();
             System.out.println(p1.toString());
-        } finally {
-            emf.close();
         }
+        emf.close();
     }
 }

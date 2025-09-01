@@ -1,16 +1,15 @@
 package app.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString
 @Entity
 public class Fee
@@ -24,11 +23,5 @@ public class Fee
     @ManyToOne
     @ToString.Exclude
     private Person person;
-
-    public Fee(int amount, LocalDate payDate)
-    {
-        this.amount = amount;
-        this.payDate = payDate;
-    }
 
 }

@@ -1,10 +1,7 @@
 package app.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +9,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString
 @Entity
 public class Person
@@ -26,14 +25,10 @@ public class Person
     @OneToOne(mappedBy="person", cascade = CascadeType.ALL)
     private PersonDetail personDetail;
 
-    public Person(String name)
-    {
-        this.name = name;
-    }
-
     // Relationer 1:m
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @Builder.Default
     private Set<Fee> fees = new HashSet<>();
 
     // Bi-directional update
