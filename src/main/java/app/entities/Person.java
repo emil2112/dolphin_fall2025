@@ -28,7 +28,7 @@ public class Person
     // Relationer 1:m
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    @Builder.Default
+    @Builder.Default  // <---- This one is necessary with @Builder
     private Set<Fee> fees = new HashSet<>();
 
     // Bi-directional update
