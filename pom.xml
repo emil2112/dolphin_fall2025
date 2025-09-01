@@ -12,10 +12,10 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.36</lombok.version>
-        <hibernate-version>6.6.6.Final</hibernate-version>
-        <junit.version>5.11.4</junit.version>
-        <postgres.version>42.7.5</postgres.version>
+        <lombok.version>1.18.38</lombok.version>
+        <hibernate-version>7.1.0.Final</hibernate-version>
+        <junit.version>5.13.4</junit.version>
+        <postgres.version>42.7.7</postgres.version>
 
     </properties>
 

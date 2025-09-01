@@ -1,4 +1,5 @@
 package app.config;
+
 import app.entities.Fee;
 import app.entities.Person;
 import app.entities.PersonDetail;
@@ -44,7 +45,6 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Person.class);
         configuration.addAnnotatedClass(PersonDetail.class);
         configuration.addAnnotatedClass(Fee.class);
-
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {
