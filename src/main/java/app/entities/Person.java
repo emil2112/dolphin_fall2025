@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 @Entity
 public class Person
 {
@@ -27,9 +28,13 @@ public class Person
 
     // Relationer 1:m
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Builder.Default  // <---- This one is necessary with @Builder
     private Set<Fee> fees = new HashSet<>();
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Builder.Default  // <---- This one is necessary with @Builder
+    private Set<Note> notes = new HashSet<>();
 
     // Bi-directional update
 
@@ -48,6 +53,14 @@ public class Person
         if (fee != null)
         {
             fee.setPerson(this);
+        }
+    }
+
+    public void addNote(Note note){
+        this.notes.add(note);
+        if (note != null)
+        {
+            note.setPerson(this);
         }
     }
 

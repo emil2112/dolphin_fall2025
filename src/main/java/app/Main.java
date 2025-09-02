@@ -1,7 +1,9 @@
 package app;
 
 import app.config.HibernateConfig;
+import app.daos.DolphinDAO;
 import app.entities.Fee;
+import app.entities.Note;
 import app.entities.Person;
 import app.entities.PersonDetail;
 import jakarta.persistence.EntityManager;
@@ -14,8 +16,8 @@ public class Main {
         System.out.println("Hello Dolphin!");
 
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
-        try(EntityManager em = emf.createEntityManager())
-        {
+        DolphinDAO dao = new DolphinDAO(emf);
+
             Person p1 = Person.builder()
                     .name("Hanzi")
                     .build();
@@ -25,12 +27,20 @@ public class Main {
             Fee f2 = Fee.builder().amount(150).payDate(LocalDate.of(2023, 7, 19)).build();
             p1.addFee(f1);
             p1.addFee(f2);
+            Note n1 = Note.builder()
+                            .text("Hanzi er god til at svømme")
+                            .createdBy("mig")
+                            .build();
+            Note n2 = Note.builder()
+                            .text("Vi skal snart have pause")
+                            .createdBy("ole")
+                            .build();
 
-            em.getTransaction().begin();
-            em.persist(p1);
-            em.getTransaction().commit();
-            System.out.println(p1.toString());
-        }
-        emf.close();
+            p1.addNote(n1);
+            p1.addNote(n2);
+
+            dao.create(p1);
+
+        System.out.println(p1);
     }
 }

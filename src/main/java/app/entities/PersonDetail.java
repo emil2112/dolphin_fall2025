@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 @Entity
 public class PersonDetail
 {
@@ -27,6 +28,7 @@ public class PersonDetail
     @OneToOne
     @MapsId
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Person person;
 
     public PersonDetail(String address, int zip, String city, int age)
